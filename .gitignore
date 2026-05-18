@@ -1,0 +1,4 @@
+venv_whisper/
+__pycache__/
+*.pyc
+.env
