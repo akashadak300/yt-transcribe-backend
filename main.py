@@ -1,4 +1,5 @@
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import yt_dlp
 from faster_whisper import WhisperModel
@@ -6,6 +7,15 @@ import os
 import uuid
 
 app = FastAPI()
+
+# Configure CORS to allow requests from frontend/backend (e.g., localhost:3001)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Load model globally (loads into memory once). "base" or "small" is fast.
 # Change to "medium" or "large-v3" for better accuracy but slower speed.
